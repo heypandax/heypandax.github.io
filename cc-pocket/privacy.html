@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy Policy — CC Pocket</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    --fg: #1d1d1f;
+    --bg: #ffffff;
+    --muted: #6e6e73;
+    --accent: #b3541e;
+    --card: #f5f5f7;
+    --border: #e2e2e6;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --fg: #f0f0f2;
+      --bg: #161617;
+      --muted: #9b9ba1;
+      --accent: #e8915a;
+      --card: #232325;
+      --border: #3a3a3e;
+    }
+  }
+  body {
+    margin: 0 auto;
+    padding: 48px 24px 96px;
+    max-width: 720px;
+    font: 17px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: var(--fg);
+    background: var(--bg);
+  }
+  h1 { font-size: 2rem; line-height: 1.2; margin-bottom: 0.25rem; }
+  h2 { font-size: 1.3rem; margin-top: 2.5rem; }
+  .meta { color: var(--muted); margin-top: 0; }
+  .tldr {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin: 24px 0;
+  }
+  .tldr p { margin: 0.4em 0; }
+  table { border-collapse: collapse; width: 100%; margin: 1em 0; font-size: 0.95em; }
+  th, td { border: 1px solid var(--border); padding: 8px 12px; text-align: left; vertical-align: top; }
+  th { background: var(--card); }
+  a { color: var(--accent); }
+  code { font-size: 0.9em; background: var(--card); padding: 1px 5px; border-radius: 4px; }
+  footer { margin-top: 4rem; color: var(--muted); font-size: 0.9em; }
+</style>
+</head>
+<body>
+
+<h1>Privacy Policy</h1>
+<p class="meta"><strong>CC Pocket</strong> · Effective date: June 11, 2026</p>
+
+<div class="tldr">
+  <p><strong>The short version:</strong> CC Pocket is a remote control for Claude Code running on <em>your own computer</em>. Your conversations, prompts, files, and images travel directly between your phone and your computer — we operate no server in between and cannot see any of that content. The only data we receive is anonymous usage statistics and crash reports (Android version, via Google Firebase), which you can ask us to delete at any time.</p>
+</div>
+
+<h2>1. What CC Pocket is</h2>
+<p>CC Pocket (the “app”) is a mobile client that connects to a companion program (the “daemon”) that you install and run on your own computer. The app lets you start, monitor, and reply to Claude Code sessions running on that computer. This policy covers the CC Pocket mobile apps for Android and iOS, published by the developer listed in the <a href="#contact">Contact</a> section (“we”, “us”).</p>
+
+<h2>2. Data that stays between your devices</h2>
+<p>The following content is exchanged <strong>directly between your phone and your own computer</strong>, over your local network or a connection you configure. It does not pass through any server operated by us, and we have no access to it:</p>
+<ul>
+  <li>Your prompts, conversations, and Claude Code session output;</li>
+  <li>File names, directory listings, and file contents shown in the app;</li>
+  <li>Images you attach and send to a session;</li>
+  <li>Pairing credentials between the app and your daemon.</li>
+</ul>
+<p>Note that Claude Code itself, running on your computer, sends your prompts to Anthropic’s API under your own Anthropic account. That processing is governed by <a href="https://www.anthropic.com/legal/privacy">Anthropic’s Privacy Policy</a>, not this one.</p>
+
+<h2>3. Camera and microphone</h2>
+<ul>
+  <li><strong>Camera</strong> — used only to scan the pairing QR code displayed on your computer. Frames are processed on your device and never stored or uploaded.</li>
+  <li><strong>Microphone &amp; speech recognition</strong> — used only when you choose to dictate a prompt. Dictation is transcribed for that message; audio recordings are not stored by the app and are not sent to us.</li>
+</ul>
+<p>Both permissions are optional: the app remains usable if you decline them (you can pair and type manually).</p>
+
+<h2>4. Data we collect</h2>
+<p>The <strong>Android</strong> version of the app uses Google Firebase to help us understand usage and fix bugs:</p>
+<table>
+  <tr><th>Service</th><th>Data</th><th>Purpose</th></tr>
+  <tr>
+    <td>Firebase Analytics</td>
+    <td>App interaction events (e.g. screens viewed), device model, operating-system version, app version, coarse region, and a resettable pseudonymous identifier.</td>
+    <td>Understand which features are used so we can improve the app.</td>
+  </tr>
+  <tr>
+    <td>Firebase Crashlytics</td>
+    <td>Crash stack traces, device state at the time of a crash (model, OS version, free memory), and app version.</td>
+    <td>Diagnose and fix crashes.</td>
+  </tr>
+</table>
+<p>This data does not include your conversations, prompts, files, or images. Firebase processing is described in <a href="https://policies.google.com/privacy">Google’s Privacy Policy</a> and <a href="https://firebase.google.com/support/privacy">Privacy and Security in Firebase</a>.</p>
+<p>The <strong>iOS</strong> version does not include Firebase and sends us no analytics.</p>
+
+<h2>5. Data sharing and selling</h2>
+<p>We do not sell your data. We do not share any data with third parties other than the Google Firebase services listed above, which act as our data processors. We do not serve ads.</p>
+
+<h2>6. Data retention and your choices</h2>
+<ul>
+  <li>Analytics and crash data is retained by Firebase under Google’s standard retention periods and is then deleted automatically.</li>
+  <li>You can ask us to delete analytics data associated with your device by emailing us (see <a href="#contact">Contact</a>); include your device model so we can locate the pseudonymous identifier.</li>
+  <li>All pairing data and cached content on your phone can be removed at any time by deleting the app.</li>
+</ul>
+
+<h2>7. Security</h2>
+<p>Pairing between the app and your daemon requires a code or QR scan that only someone with access to your computer can see. Connections between the app and the daemon stay within your local network or the tunnel you configure. Because the daemon runs on your own machine, the security of that machine and network is under your control.</p>
+
+<h2>8. Children</h2>
+<p>CC Pocket is a developer tool and is not directed at children under 13 (or the equivalent minimum age in your jurisdiction). We do not knowingly collect personal information from children.</p>
+
+<h2>9. Changes to this policy</h2>
+<p>If we change this policy, we will update this page and the effective date above. Material changes will be highlighted in the app’s release notes.</p>
+
+<h2 id="contact">10. Contact</h2>
+<p>Questions or data requests: <a href="mailto:pandaleeng@gmail.com">pandaleeng@gmail.com</a></p>
+
+<footer>CC Pocket · <a href="https://github.com/heypandax">github.com/heypandax</a></footer>
+
+</body>
+</html>
