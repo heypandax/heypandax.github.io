@@ -74,7 +74,7 @@
   menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { menu.classList.remove('open'); burger.innerHTML = BARS; }));
 
   // ── active-section nav indicator ──
-  const sections = ['features','how','security','start'].map(id => document.getElementById(id)).filter(Boolean);
+  const sections = ['start','features','how','security'].map(id => document.getElementById(id)).filter(Boolean);
   const navLinks = [...document.querySelectorAll('.nav-links a')];
   const spy = new IntersectionObserver((entries) => {
     entries.forEach(e => {
@@ -98,6 +98,30 @@
     });
   });
 
+  // ── download: device-aware (phone → direct install, computer → QR) ──
+  // Phones get tappable store buttons; computers get a QR to scan with a phone
+  // camera. Detection drives a root attribute the CSS keys off of.
+  const isMobile = /Android|iPhone|iPad|iPod|Mobile|Silk|Kindle|BlackBerry|Opera Mini|IEMobile/i.test(navigator.userAgent)
+    || (navigator.maxTouchPoints > 1 && /Macintosh/.test(navigator.userAgent)); // iPadOS reports as Mac
+  // Desktop shows a QR to scan; a phone (or a desktop where the QR lib failed
+  // to load) shows a tappable store link instead — never an empty QR box.
+  const useQR = !isMobile && typeof QRCode !== 'undefined';
+  root.setAttribute('data-device', useQR ? 'desktop' : 'mobile');
+
+  if (useQR){
+    document.querySelectorAll('.dl-card').forEach(card => {
+      const box = card.querySelector('.dl-qr-box');
+      const href = card.dataset.href;
+      if (!box || !href) return;
+      // Generated entirely in-browser — the store URL never leaves this page.
+      new QRCode(box, {
+        text: href, width: 148, height: 148,
+        colorDark: '#0E0F11', colorLight: '#ffffff',
+        correctLevel: QRCode.CorrectLevel.M
+      });
+    });
+  }
+
   // ── reveal on scroll ──
   // Real browsers: IntersectionObserver adds .in → CSS fades it up.
   // Some embedded webviews freeze CSS transitions at frame 0 (the 0→1 opacity
@@ -114,9 +138,8 @@
   } else {
     revealEls.forEach(el => el.classList.add('in'));
   }
-  function forceVisible(){
-    revealEls.forEach(el => { el.style.transition = 'none'; el.style.opacity = '1'; el.style.transform = 'none'; });
-  }
+  const show = el => { el.style.transition = 'none'; el.style.opacity = '1'; el.style.transform = 'none'; };
+  function forceVisible(){ revealEls.forEach(show); }
   // probe: does a CSS transition actually progress here?
   const probe = document.createElement('div');
   probe.style.cssText = 'position:fixed;left:-9999px;top:0;width:2px;height:2px;opacity:0;transition:opacity .05s linear;pointer-events:none;';
@@ -130,5 +153,5 @@
     }, 140);
   });
   // ultimate safety net regardless of probe outcome
-  setTimeout(() => { revealEls.forEach(el => { if (parseFloat(getComputedStyle(el).opacity) < 0.5) { el.style.transition='none'; el.style.opacity='1'; el.style.transform='none'; } }); }, 2400);
+  setTimeout(() => { revealEls.forEach(el => { if (parseFloat(getComputedStyle(el).opacity) < 0.5) show(el); }); }, 2400);
 })();
