@@ -172,8 +172,9 @@
         </a>
       </div>
       <!-- Android / APK -->
+      <!-- data-href is a direct-APK fallback; app.js upgrades it to the newest .apk asset via the GitHub API -->
       <div class="dl-card reveal" data-store="android"
-           data-href="https://github.com/heypandax/cc-pocket/releases/latest">
+           data-href="https://github.com/heypandax/cc-pocket/releases/latest/download/cc-pocket-android.apk">
         <div class="dl-card-hd">
           <span class="dl-ico" aria-hidden="true">
             <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 9.48l1.84-3.18a.4.4 0 00-.69-.4l-1.86 3.23a11.4 11.4 0 00-9.78 0L5.25 5.9a.4.4 0 10-.69.4L6.4 9.48A10.8 10.8 0 001 18.02h22a10.8 10.8 0 00-5.4-8.54M7 15.25a1.1 1.1 0 110-2.2 1.1 1.1 0 010 2.2m10 0a1.1 1.1 0 110-2.2 1.1 1.1 0 010 2.2"/></svg>
@@ -185,7 +186,7 @@
         </div>
         <div class="dl-qr" aria-hidden="true"><div class="dl-qr-box"></div></div>
         <p class="dl-qr-hint mono"><span class="i18n-en">Scan to download</span><span class="i18n-zh">扫码下载</span></p>
-        <a class="btn btn-primary dl-btn" href="https://github.com/heypandax/cc-pocket/releases/latest" target="_blank" rel="noopener">
+        <a class="btn btn-primary dl-btn" href="https://github.com/heypandax/cc-pocket/releases/latest/download/cc-pocket-android.apk" target="_blank" rel="noopener">
           <span class="i18n-en">Download APK on GitHub</span><span class="i18n-zh">前往 GitHub 下载 APK</span>
         </a>
       </div>
@@ -206,19 +207,43 @@
               <button class="os-tab" role="tab" data-os="windows">Windows</button>
             </div>
 
+            <!-- Install / Update mode: defaults to Install; toggle swaps the command across whichever OS is active -->
+            <div class="mode-tabs" role="tablist" aria-label="Install or update">
+              <button class="mode-tab" role="tab" data-mode="install"><span class="i18n-en">Install</span><span class="i18n-zh">安装</span></button>
+              <button class="mode-tab" role="tab" data-mode="update"><span class="i18n-en">Update</span><span class="i18n-zh">更新</span></button>
+            </div>
+
             <div class="os-panel" data-os="mac">
-              <div class="cmd"><span class="prompt mono">$</span><code class="mono">brew install --cask heypandax/tap/cc-pocket</code><button class="copy" data-copy="brew install --cask heypandax/tap/cc-pocket" aria-label="Copy"><svg width="15" height="15" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="6" y="6" width="9" height="9" rx="1.5"/><path d="M12 6V4.5A1.5 1.5 0 0010.5 3h-6A1.5 1.5 0 003 4.5v6A1.5 1.5 0 004.5 12H6"/></svg></button></div>
-              <p class="os-note"><span class="i18n-en">Apple Silicon &amp; Intel — Homebrew picks the right signed build.</span><span class="i18n-zh">Apple 芯片与 Intel 通用——Homebrew 自动选对应的签名构建。</span></p>
+              <div class="mode-block" data-mode="install">
+                <div class="cmd"><span class="prompt mono">$</span><code class="mono">brew install --cask heypandax/tap/cc-pocket</code><button class="copy" data-copy="brew install --cask heypandax/tap/cc-pocket" aria-label="Copy"><svg width="15" height="15" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="6" y="6" width="9" height="9" rx="1.5"/><path d="M12 6V4.5A1.5 1.5 0 0010.5 3h-6A1.5 1.5 0 003 4.5v6A1.5 1.5 0 004.5 12H6"/></svg></button></div>
+                <p class="os-note"><span class="i18n-en">Apple Silicon &amp; Intel — Homebrew picks the right signed build.</span><span class="i18n-zh">Apple 芯片与 Intel 通用——Homebrew 自动选对应的签名构建。</span></p>
+              </div>
+              <div class="mode-block" data-mode="update">
+                <div class="cmd"><span class="prompt mono">$</span><code class="mono">brew upgrade --cask heypandax/tap/cc-pocket</code><button class="copy" data-copy="brew upgrade --cask heypandax/tap/cc-pocket" aria-label="Copy"><svg width="15" height="15" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="6" y="6" width="9" height="9" rx="1.5"/><path d="M12 6V4.5A1.5 1.5 0 0010.5 3h-6A1.5 1.5 0 003 4.5v6A1.5 1.5 0 004.5 12H6"/></svg></button></div>
+                <p class="os-note"><span class="i18n-en">Homebrew reinstalls &amp; restarts the daemon onto the new build — no reboot needed.</span><span class="i18n-zh">Homebrew 自动重装并把守护进程切到新版本——无需重启电脑。</span></p>
+              </div>
             </div>
 
             <div class="os-panel" data-os="linux">
-              <div class="cmd"><span class="prompt mono">$</span><code class="mono">curl -fsSL https://raw.githubusercontent.com/heypandax/cc-pocket/main/scripts/install.sh | bash</code><button class="copy" data-copy="curl -fsSL https://raw.githubusercontent.com/heypandax/cc-pocket/main/scripts/install.sh | bash" aria-label="Copy"><svg width="15" height="15" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="6" y="6" width="9" height="9" rx="1.5"/><path d="M12 6V4.5A1.5 1.5 0 0010.5 3h-6A1.5 1.5 0 003 4.5v6A1.5 1.5 0 004.5 12H6"/></svg></button></div>
-              <p class="os-note"><span class="i18n-en">x86_64. Installs under <span class="mono">~/.local</span> + a <span class="mono">systemd&nbsp;--user</span> service.</span><span class="i18n-zh">x86_64。装到 <span class="mono">~/.local</span> 下，并注册 <span class="mono">systemd&nbsp;--user</span> 服务。</span></p>
+              <div class="mode-block" data-mode="install">
+                <div class="cmd"><span class="prompt mono">$</span><code class="mono">curl -fsSL https://raw.githubusercontent.com/heypandax/cc-pocket/main/scripts/install.sh | bash</code><button class="copy" data-copy="curl -fsSL https://raw.githubusercontent.com/heypandax/cc-pocket/main/scripts/install.sh | bash" aria-label="Copy"><svg width="15" height="15" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="6" y="6" width="9" height="9" rx="1.5"/><path d="M12 6V4.5A1.5 1.5 0 0010.5 3h-6A1.5 1.5 0 003 4.5v6A1.5 1.5 0 004.5 12H6"/></svg></button></div>
+                <p class="os-note"><span class="i18n-en">x86_64. Installs under <span class="mono">~/.local</span> + a <span class="mono">systemd&nbsp;--user</span> service.</span><span class="i18n-zh">x86_64。装到 <span class="mono">~/.local</span> 下，并注册 <span class="mono">systemd&nbsp;--user</span> 服务。</span></p>
+              </div>
+              <div class="mode-block" data-mode="update">
+                <div class="cmd"><span class="prompt mono">$</span><code class="mono">curl -fsSL https://raw.githubusercontent.com/heypandax/cc-pocket/main/scripts/install.sh | bash</code><button class="copy" data-copy="curl -fsSL https://raw.githubusercontent.com/heypandax/cc-pocket/main/scripts/install.sh | bash" aria-label="Copy"><svg width="15" height="15" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="6" y="6" width="9" height="9" rx="1.5"/><path d="M12 6V4.5A1.5 1.5 0 0010.5 3h-6A1.5 1.5 0 003 4.5v6A1.5 1.5 0 004.5 12H6"/></svg></button></div>
+                <p class="os-note"><span class="i18n-en">Same one-liner — re-run it. The installer restarts the service onto the new binary for you.</span><span class="i18n-zh">同一条命令，重跑一遍即可——安装脚本会自动把服务重启到新版本。</span></p>
+              </div>
             </div>
 
             <div class="os-panel" data-os="windows">
-              <div class="cmd"><span class="prompt mono">&gt;</span><code class="mono">Expand-Archive cc-pocket-daemon-*-windows-x86_64.zip $env:LOCALAPPDATA\Programs\</code><button class="copy" data-copy="Expand-Archive cc-pocket-daemon-*-windows-x86_64.zip -DestinationPath $env:LOCALAPPDATA\Programs\" aria-label="Copy"><svg width="15" height="15" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="6" y="6" width="9" height="9" rx="1.5"/><path d="M12 6V4.5A1.5 1.5 0 0010.5 3h-6A1.5 1.5 0 003 4.5v6A1.5 1.5 0 004.5 12H6"/></svg></button></div>
-              <p class="os-note"><span class="i18n-en">x86_64. <a href="https://github.com/heypandax/cc-pocket/releases/latest" target="_blank" rel="noopener">Download the .zip</a> from Releases first, then extract in PowerShell.</span><span class="i18n-zh">x86_64。先从 <a href="https://github.com/heypandax/cc-pocket/releases/latest" target="_blank" rel="noopener">Releases 下载 .zip</a>，再在 PowerShell 里解压。</span></p>
+              <div class="mode-block" data-mode="install">
+                <div class="cmd"><span class="prompt mono">&gt;</span><code class="mono">Expand-Archive cc-pocket-daemon-*-windows-x86_64.zip $env:LOCALAPPDATA\Programs\</code><button class="copy" data-copy="Expand-Archive cc-pocket-daemon-*-windows-x86_64.zip -DestinationPath $env:LOCALAPPDATA\Programs\" aria-label="Copy"><svg width="15" height="15" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="6" y="6" width="9" height="9" rx="1.5"/><path d="M12 6V4.5A1.5 1.5 0 0010.5 3h-6A1.5 1.5 0 003 4.5v6A1.5 1.5 0 004.5 12H6"/></svg></button></div>
+                <p class="os-note"><span class="i18n-en">x86_64. <a href="https://github.com/heypandax/cc-pocket/releases/latest" target="_blank" rel="noopener">Download the .zip</a> from Releases first, then extract in PowerShell.</span><span class="i18n-zh">x86_64。先从 <a href="https://github.com/heypandax/cc-pocket/releases/latest" target="_blank" rel="noopener">Releases 下载 .zip</a>，再在 PowerShell 里解压。</span></p>
+              </div>
+              <div class="mode-block" data-mode="update">
+                <div class="cmd"><span class="prompt mono">&gt;</span><code class="mono">Expand-Archive -Force cc-pocket-daemon-*-windows-x86_64.zip $env:LOCALAPPDATA\Programs\</code><button class="copy" data-copy="Expand-Archive -Force cc-pocket-daemon-*-windows-x86_64.zip -DestinationPath $env:LOCALAPPDATA\Programs\" aria-label="Copy"><svg width="15" height="15" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="6" y="6" width="9" height="9" rx="1.5"/><path d="M12 6V4.5A1.5 1.5 0 0010.5 3h-6A1.5 1.5 0 003 4.5v6A1.5 1.5 0 004.5 12H6"/></svg></button></div>
+                <p class="os-note"><span class="i18n-en"><a href="https://github.com/heypandax/cc-pocket/releases/latest" target="_blank" rel="noopener">Download the newest .zip</a>, extract with <span class="mono">-Force</span> to overwrite, then restart the daemon.</span><span class="i18n-zh"><a href="https://github.com/heypandax/cc-pocket/releases/latest" target="_blank" rel="noopener">下载最新 .zip</a>，用 <span class="mono">-Force</span> 覆盖解压，然后重启守护进程。</span></p>
+              </div>
             </div>
           </div>
         </div>
